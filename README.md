@@ -17,7 +17,7 @@ $ npm install
 
 ### Run locally
 
-* Clone this project from [GitHub](https://github.com/AVegners/zoomcharts-carparking).
+* Clone this project from [GitHub](https://github.com/zoomcharts/singapore-carpark-availability-demo).
 * Run the App inside the Webpack Dev Server:
 
 ```bash
