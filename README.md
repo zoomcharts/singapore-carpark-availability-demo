@@ -1,4 +1,4 @@
-# Singapore carparking
+# Singapore carpark availability demo
 
 ![image of application](./img/singapore-parking.jpg)
 
