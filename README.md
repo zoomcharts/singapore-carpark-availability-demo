@@ -1,131 +1,34 @@
-# ZoomCharts
+# Singapore carparking
 
-The world's most interactive data visualization software
+![image of application](./img/singapore-parking.jpg)
 
-- Official website: [zoomcharts.com](https://zoomcharts.com/en/)
-- Download page: [zoomcharts.com/en/javascript-charts-library/pricing/](https://zoomcharts.com/en/javascript-charts-library/pricing/)
-- Licensing: [zoomcharts.com/en/legal/](https://zoomcharts.com/en/legal/)
-- Support: [forum.zoomcharts.com](https://forum.zoomcharts.com/)
+## Stack
 
-## Download and install ZoomCharts
+* Frontend: ES6, Babel, [ZoomCharts](https://zoomcharts.com/en/)
+* Webpack for building web assets
 
-Please note that there are several ways to use ZoomCharts. For general installation instructions, see the [docs](https://zoomcharts.com/developers/en/introduction.html).
+## Quickstart
 
-### Use our CDN
+### Setup
 
-Instead of downloading, you can use our CDN to access files directly. See [zoomcharts.com/developers/en/overview/installation.html](https://zoomcharts.com/developers/en/overview/installation.html) for details.
-
-```
-<script src="https://cdn.zoomcharts-cloud.com/1/stable/zoomcharts.js"></script>
+```bash
+$ npm install
 ```
 
-### Install from npm
+### Run locally
 
-See [npm documentation](https://docs.npmjs.com/) on how to get started with npm.
+* Clone this project from [GitHub](https://github.com/AVegners/zoomcharts-carparking).
+* Run the App inside the Webpack Dev Server:
 
+```bash
+# run in developement mode (refreshes the app on source code changes)
+$ npm run babel
+$ npm run dev
+
+# builds the production version with client assets in "dist" directory
+$ npm run build
 ```
-npm install --save @dvsl/zoomcharts
-```
 
-## Load ZoomCharts as an ES6 module
+When running in "dev" mode navigate to [http://localhost:9000/](http://localhost:9000/) to see the application.
 
-ZoomCharts can be loaded as an ES6 module with the use of transpilers - Babel and TypeScript.
-
-### Babel
-```javascript
-import zc from "@dvsl/zoomcharts" 
-
-let TimeChart = zc.TimeChart;
-
-//Generate the chart
-var t = new TimeChart({
-    //options
-})
-```
-### TypeScript
-```javascript
-import * as zc from "@dvsl/zoomcharts"
-
-let TimeChart = zc.TimeChart;
-
-//Generate the chart
-var t = new TimeChart({
-    //options
-})
-```
-## Build and debug
-
-If you want to do modifications to ZoomCharts or fix issues, you may build your own files. ZoomCharts uses Webpack as the build system.
-
-```
-npm i webpack webpack-cli --save-dev
-```
-Poject structure
-```
-.
-├── index.html
-├── package.json
-├── src
-│   └── index.js
-└── webpack.config.js
-```
-Setup **__package.json__** file
-```javascript
-{
-  "name": "zoomcharts_project",
-  "version": "1.0.0",
-  "description": "",
-  "main": "./dist/bundle.js",
-  "scripts": {
-    "build": "babel src -d build",
-    "webpack": "webpack",
-    "start": "webpack --config webpack.config.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "",
-  "dependencies": {
-    "zoomcharts": "^1.18.4"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-preset-env": "^1.7.0",
-    "copy-webpack-plugin": "^4.5.2",
-    "webpack": "^4.15.1",
-    "webpack-cli": "^3.0.8"
-  }
-}
-```
-Create **__webpack.config.js__** file
-```javascript
-const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-module.exports = {
-    entry: './build/index.js',
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
-    },
-    plugins: [
-        new CopyWebpackPlugin([
-            {
-                from: './node_modules/@invisualdata/demo_package/lib/assets',
-                to: 'assets'
-            }
-        ])
-    ],
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"
-                }
-            }
-        ]
-    }
-};
-```# singapore-carpark-availability-demo
+After executing the `npm run build` command,  open local file "index.html" in your browser.

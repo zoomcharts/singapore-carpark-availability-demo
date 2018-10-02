@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/png" href="./img/singapore-parking-favicon.png"/>
+    <title>ZoomCharts carPark</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./dist/main.css">
+</head>
+
+<body>
+    <div class="content-wrapper">
+
+        <div class="logo-wrapper">
+            <a href="https://zoomcharts.com/en/">
+                <img src="img/zoomcharts.svg" alt="ZoomCharts" class="logo">
+            </a>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button id="startTour" type="button" class="btn btn-primary">START GUIDED TOUR</button>
+                        <button id="closeTour" type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE THE TOUR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary trigger-btn" data-toggle="modal" data-target="#basicModal">
+        </button>
+
+        <!-- GeoChart menu btn -->
+        <div class="chart-menu-wrapper" id="chart-menu-wrapper">
+            <div id="menu-btn" class="menu-btn btn btn-outline-secondary disabled"></div>
+            <div class="clear"></div>
+        </div>
+
+        <!-- geochart container -->
+        <div class="chart-wrapper">
+            <div class="loading-wrapper fa fa-circle-o-notch fa-spin"></div>
+
+            <!-- ZoomCharts charts container -->
+            <div id="demo" class="chart"></div>
+            
+            <!-- Search wrapper -->
+            <div class="searh-wrapper">
+                <div class="close" id="cParkListCloseBtn"></div>
+                <div class="search-list-wrapper" id="search-list-wrapper"></div>
+            </div>
+
+        </div>
+
+        <!-- side bar -->
+        <div id="mySidenav" class="sidenav">
+            <div class="section-wrapper">
+                <div class="section section-top">
+                    <div class="header-wrapper">
+                        <div class="title">0 parking lots</div>
+                        <div class="header-inner-wrapper">
+                            <div class="title">
+                                <span class="left">0 free</span>
+                                <span class="right">0 taken</span>
+                            </div>
+                            <div class="graph">
+                                <div class="graph-inner" style="--total-carpark-count: 0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section section-middle">
+                    <ul class="filter-wrapper">
+                        <li class="title">Filters</li>
+                        <li class="input-wrapper search">
+                            <div class="inner-wrapper">
+                                <input type="text" name="search" placeholder="Search">
+                                <span class="carat"></span>
+                            </div>
+                        </li>
+                        <li class="input-wrapper">
+                            <div class="inner-wrapper">
+                                <span class="title">Car park type:</span>
+                                <select class="dropdown-wrapper car-park-type show-tick">
+                                    <option value="0">surface car park</option>
+                                    <option value="1">multi-storey car park</option>
+                                    <option value="2">basement car park</option>
+                                    <option value="3">covered car park</option>
+                                    <option value="4" title="Mechanised and surface car park">mechanised and surface car park</option>                                    
+                                </select>
+                            </div>
+                        </li>
+                        <li class="input-wrapper">
+                            <div class="inner-wrapper">
+                                <span class="title">Parking lot type:</span>
+                                <select class="dropdown-wrapper lot-type show-tick">
+                                    <option value="0">c</option>
+                                    <option value="1">y</option>
+                                    <option value="2">h</option>
+                                    <option value="3">l</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li class="input-wrapper">
+                            <div class="inner-wrapper">
+                                <span class="title">Night parking:</span>
+                                <select class="dropdown-wrapper night-parking">
+                                    <option value="0">yes</option>
+                                    <option value="1">no</option>
+                                </select>
+                            </div>
+                        </li>
+                        <li class="aggregation">
+                            <p id="aggrStatus">Aggregation level:
+                                <span class="level" id="aggrStatusLevel">70</span>
+                            </p>
+                            <div id="slider" class="slider-wrapper">
+                                <div class="slider-inner-wrapper">
+                                    <span class="slider-marker">30</span>
+                                    <input class="slider" type="text" name="aggrSlider" data-provide="slider" data-slider-min="30" data-slider-max="100" data-slider-step="10"
+                                        data-slider-value="70">
+                                    <span class="slider-marker">100</span>
+                                </div>
+
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="filter-header">
+                        <ul class="filters-btn-list">
+                            <li class="title">Show: </li>
+                            <li class="radio-btn-wrapper" id="radio-btn-wrapper">
+                                <form action="">
+                                    <ul>
+                                        <li>
+                                            <input type="radio" name="filter" value="1" id="filter-btn-1" checked="checked">
+                                            <label for="filter-btn-1">All</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="filter" value="2" id="filter-btn-2">
+                                            <label for="filter-btn-2"> With free spaces</label>
+                                        </li>
+                                        <li>
+                                            <input type="radio" name="filter" value="3" id="filter-btn-3">
+                                            <label for="filter-btn-3">At least half free</label>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </li>
+                            <li class="btn" id="filter-btn"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="section section-bottom clusterize-scroll" id="section-bottom">
+                    <ul class="carpark-list clusterize-content" id="carpark-list">
+                        <li class="clusterize-no-data">Loading data…</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./dist/bundle.js"></script>
+    <script type="text/javascript">
+        var ZoomChartsLicense = "ZCP-73uru076w-10: Singapore POC";
+        var ZoomChartsLicenseKey = "9d794cdb851c4475757f6e86636ebc6365a2aa7e287d96f099" +
+            "4f1b0d9d510e00e7961210751d42a6915ed0b56da171c453b9a208a1d053ea2d1376e5b93024e" +
+            "d29bc53673751b470076a3d7788fd5578f98457bc55ad28d019b71c42a9e14a827b18327d3c50" +
+            "a870d58275bd0e22e2e82d17e56b316dd8d03726bf4c3944838934b51e7f5998cd87a7194ff14" +
+            "62e2eceaa1cc9c21c975864e00714a1666212cbc4da75b1da95c00597c3d2d107c7a39e19ed26" +
+            "ba7051aa0e9b437f0893cec32dcbbf16bc3cb53d5cd45735c4efce3673844b6dada193558baa8" +
+            "52a063ac0dd00e7cf6c903c1235bcaa53e3b0bd49ab628e5afa695722f36678577eef18828729";
+    </script>
+</body>
+
+</html>
