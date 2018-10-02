@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import config from './config'
 import { GeoChart } from '@dvsl/zoomcharts'
 import sidebar from './sidebar'
 import { loadChartData } from './loadData'
@@ -12,6 +13,7 @@ import 'pretty-dropdowns/dist/css/prettydropdowns.css'
 import './../src/style/style.css'
 import './../src/style/introjs.css'
 import './../src/style/bootstrap-slider.css'
+
 
 let carParkAvailabilityUrl = 'https://api.data.gov.sg/v1/transport/carpark-availability'
 let urls = []

@@ -1,0 +1,12 @@
+LICENSING
+====
+
+You can use this project as an example on how to integrate ZoomCharts with 3rd party API.
+
+To run this project in your own environment, you need to acquire a ZoomCharts SDK license: https://zoomcharts.com/en/pricing/
+
+If you would like to create a derived projects, you also need to acquire a ZoomCharts SDK license.
+
+In case of questions, please contact support@zoomcharts.com for further instructions.
+
+ZoomCharts Team, 2018

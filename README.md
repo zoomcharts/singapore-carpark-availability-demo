@@ -11,6 +11,8 @@
 
 ### Setup
 
+copy src/config.js.dist to src/config.js and set your [ZoomCharts License Key](https://zoomcharts.com/en/pricing)
+
 ```bash
 $ npm install
 ```
