@@ -31,6 +31,6 @@ $ npm run dev
 $ npm run build
 ```
 
-When running in "dev" mode navigate to [http://localhost:9000/](http://localhost:9000/) to see the application.
+When running in "dev" mode navigate to [http://localhost:10001/](http://localhost:10001/) to see the application.
 
 After executing the `npm run build` command,  open local file "index.html" in your browser.

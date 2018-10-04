@@ -251,7 +251,7 @@ export let chartSettings = (opt) => {
         preloaded: pieData
       },
       events: {
-        onClick (event, args) {
+        onClick(event, args) {
           if (args.clickPie) {
             let parentNode = args.clickPie.data.values[0].parentNode
             let map = geoChart.leaflet()
@@ -310,10 +310,14 @@ export let chartSettings = (opt) => {
         return true
       }
     },
-    style: {
+    layerTypes: {
       items: {
-        scaleWithZoom: false,
-        scaleWithSize: false
+        style: {
+          item: {
+            scaleWithZoom: false,
+            scaleWithSize: false
+          }
+        }
       }
     },
     layers: [
